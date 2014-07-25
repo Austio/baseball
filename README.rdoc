@@ -1,0 +1,41 @@
+== README
+
+Assumptions
+  - A player's statistics are calculated for a team based on who he was playing for at the end of the year.
+  If this was not true, we would need to figure out how this is calculated and clean up the player_teams table to account for
+  partial years or break it down to a specific date range
+
+  - A player can have both hitting and pitching statistics, we will handle that in the statistic model
+
+  - A team can either be in the NL or AL.  If we wanted to deal with teams that can switch divisions, we would add a new table
+  that would deal with them being in one or the other based on year.
+
+* File Importing
+
+  - File importing is handled by the FileImporter class and is stored in the service_objects directory.
+  - Player importing inherits from file and imports players, inserting them into the database
+
+  All specs for these are located in spec/service_objects
+
+* Models
+  Player
+  Team
+  PlayerTeam - Join table for player/team combo for a specific year.
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
