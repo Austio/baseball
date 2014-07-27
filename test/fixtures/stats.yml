@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 
+  year: 
+  team_id: 
+  batting_statistic_id: 1
+  pitching_statistic_id: 1
+
+two:
+  player_id: 
+  year: 
+  team_id: 
+  batting_statistic_id: 1
+  pitching_statistic_id: 1

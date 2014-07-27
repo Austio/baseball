@@ -1,6 +1,11 @@
 == README
 
 Assumptions
+  - We are getting a for real CSV file that is formatted correctly.
+
+  - We are getting the most accurate data, so we will not need to run updates on current data.
+  Only creation on the data we import.
+
   - A player's statistics are calculated for a team based on who he was playing for at the end of the year.
   If this was not true, we would need to figure out how this is calculated and clean up the player_teams table to account for
   partial years or break it down to a specific date range
@@ -21,6 +26,9 @@ Assumptions
   Player
   Team
   PlayerTeam - Join table for player/team combo for a specific year.
+  Statistic - Join table for the player, year, team, batting and pitching statistics
+  BattingStatistic - Table for the batting statistics to be held for the season
+
 
 * Configuration
 

@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725141550) do
+ActiveRecord::Schema.define(version: 20140725214858) do
+
+  create_table "batting_statistics", force: true do |t|
+    t.integer  "g"
+    t.integer  "ab"
+    t.integer  "r"
+    t.integer  "h"
+    t.integer  "2_b"
+    t.integer  "3_b"
+    t.integer  "hr"
+    t.integer  "rbi"
+    t.integer  "sb"
+    t.integer  "cs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "player_teams", force: true do |t|
     t.integer  "player_id"
@@ -32,9 +47,23 @@ ActiveRecord::Schema.define(version: 20140725141550) do
     t.datetime "updated_at"
   end
 
+  add_index "players", ["id", "player_team_id"], name: "index_players_on_id_and_player_team_id"
+  add_index "players", ["id", "statistic_id"], name: "index_players_on_id_and_statistic_id"
+  add_index "players", ["player_id"], name: "index_players_on_player_id"
+
+  create_table "stats", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "year"
+    t.integer  "team_id"
+    t.integer  "batting_statistic_id"
+    t.integer  "pitching_statistic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.string   "name"
-    t.string   "division"
+    t.string   "league"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

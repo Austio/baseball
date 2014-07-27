@@ -5,10 +5,10 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :name_last
       t.string :player_id
       t.integer :birth_year
-      t.integer :statistic_id
-      t.integer :player_team_id
 
       t.timestamps
     end
+
+    add_index :players, :player_id
   end
 end

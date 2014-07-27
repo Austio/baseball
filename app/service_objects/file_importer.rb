@@ -1,10 +1,10 @@
 class FileImporter
-require 'csv'
+  require 'csv'
 
   attr_reader :file
 
   def initialize(file)
-    @file = "#{Rails.root}/spec/fixtures/Master-small-good.csv"
+    @file = file
   end
 
   def format_column(column)
@@ -15,5 +15,15 @@ require 'csv'
     Hash[column.zip line]
   end
 
+  def find_or_create_player_id(player_id)
+    player_id.downcase!
+    Player.select(:id).where(:player_id => player_id).first_or_create.id
+  end
+
+  def find_or_create_team_id(team_name,league)
+    team_name.upcase!
+    league.upcase!
+    Team.select(:id).where(:name => team_name, :league => league).first_or_create.id
+  end
 
 end

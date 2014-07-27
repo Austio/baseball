@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :batting_statistics
+
   resources :teams
 
   resources :players

@@ -1,0 +1,61 @@
+<%= form_for(@batting_statistic) do |f| %>
+  <% if @batting_statistic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@batting_statistic.errors.count, "error") %> prohibited this batting_statistic from being saved:</h2>
+
+      <ul>
+      <% @batting_statistic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :statistic_id %><br>
+    <%= f.number_field :statistic_id %>
+  </div>
+  <div class="field">
+    <%= f.label :g %><br>
+    <%= f.number_field :g %>
+  </div>
+  <div class="field">
+    <%= f.label :ab %><br>
+    <%= f.number_field :ab %>
+  </div>
+  <div class="field">
+    <%= f.label :r %><br>
+    <%= f.number_field :r %>
+  </div>
+  <div class="field">
+    <%= f.label :h %><br>
+    <%= f.number_field :h %>
+  </div>
+  <div class="field">
+    <%= f.label :2b %><br>
+    <%= f.number_field :2b %>
+  </div>
+  <div class="field">
+    <%= f.label :3b %><br>
+    <%= f.number_field :3b %>
+  </div>
+  <div class="field">
+    <%= f.label :hr %><br>
+    <%= f.number_field :hr %>
+  </div>
+  <div class="field">
+    <%= f.label :rbi %><br>
+    <%= f.number_field :rbi %>
+  </div>
+  <div class="field">
+    <%= f.label :sb %><br>
+    <%= f.number_field :sb %>
+  </div>
+  <div class="field">
+    <%= f.label :cs %><br>
+    <%= f.number_field :cs %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

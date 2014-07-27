@@ -1,0 +1,45 @@
+<h1>Listing batting_statistics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Statistic</th>
+      <th>G</th>
+      <th>Ab</th>
+      <th>R</th>
+      <th>H</th>
+      <th>2b</th>
+      <th>3b</th>
+      <th>Hr</th>
+      <th>Rbi</th>
+      <th>Sb</th>
+      <th>Cs</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @batting_statistics.each do |batting_statistic| %>
+      <tr>
+        <td><%= batting_statistic.statistic_id %></td>
+        <td><%= batting_statistic.g %></td>
+        <td><%= batting_statistic.ab %></td>
+        <td><%= batting_statistic.r %></td>
+        <td><%= batting_statistic.h %></td>
+        <td><%= batting_statistic.2b %></td>
+        <td><%= batting_statistic.3b %></td>
+        <td><%= batting_statistic.hr %></td>
+        <td><%= batting_statistic.rbi %></td>
+        <td><%= batting_statistic.sb %></td>
+        <td><%= batting_statistic.cs %></td>
+        <td><%= link_to 'Show', batting_statistic %></td>
+        <td><%= link_to 'Edit', edit_batting_statistic_path(batting_statistic) %></td>
+        <td><%= link_to 'Destroy', batting_statistic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Batting statistic', new_batting_statistic_path %>

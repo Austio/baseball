@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  statistic_id: 1
+  g: 1
+  ab: 1
+  r: 1
+  h: 1
+  2b: 1
+  3b: 1
+  hr: 1
+  rbi: 1
+  sb: 1
+  cs: 1
+
+two:
+  statistic_id: 1
+  g: 1
+  ab: 1
+  r: 1
+  h: 1
+  2b: 1
+  3b: 1
+  hr: 1
+  rbi: 1
+  sb: 1
+  cs: 1
