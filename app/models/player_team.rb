@@ -1,5 +1,5 @@
 class PlayerTeam < ActiveRecord::Base
-  has_one :player
-  has_one :team
+  belongs_to :player
+  belongs_to :team
 
 end

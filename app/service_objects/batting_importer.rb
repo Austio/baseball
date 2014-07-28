@@ -9,22 +9,35 @@ class BattingImporter < FileImporter
   def create_statistics(attributes,statistics)
     statistics.each do |stat|
       stat = to_hash(attributes,stat)
+      stat = format_stat(stat)
       player_id = find_or_create_player_id(stat.delete('player_id'))
       team_id   = find_or_create_team_id(stat.delete('team_id'),stat.delete('league'))
       year      = stat.delete('year_id')
 
-      player_team = PlayerTeam.where(player_id: player_id, team_id: team_id, year: year).first_or_create
 
+      PlayerTeam.where(player_id: player_id, team_id: team_id, year: year).first_or_create
 
-      batting_statistic_id = BattingStatistic.create(stat).id
-      add_batting_stat(player_id, team_id, year, batting_statistic_id)
+      add_batting_stat(player_id, team_id, year, stat)
 
     end
   end
 
+  def format_stat(stat)
+    stat["double"] = stat.delete("2_b")
+    stat["triple"] = stat.delete("3_b")
+    stat
+  end
 
-  def add_batting_stat(player_id, team_id, year, batting_statistic_id)
+
+  def add_batting_stat(player_id, team_id, year, statistic_hash)
     stat = Stat.where(player_id: player_id, team_id: team_id, year: year).first_or_create
-    stat.update(batting_statistic_id: batting_statistic_id)
+    puts statistic_hash
+    puts stat
+    if stat.batting_statistic_id
+      stat.batting_statistic.update(statistic_hash)
+    else
+      stat.create_batting_statistic(statistic_hash)
+    end
+
   end
 end

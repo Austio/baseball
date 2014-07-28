@@ -5,12 +5,13 @@ class CreateBattingStatistics < ActiveRecord::Migration
       t.integer :ab
       t.integer :r
       t.integer :h
-      t.integer '2_b'
-      t.integer '3_b'
+      t.integer :double
+      t.integer :triple
       t.integer :hr
       t.integer :rbi
       t.integer :sb
       t.integer :cs
+      t.integer :stat_id
 
       t.timestamps
     end

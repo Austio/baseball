@@ -10,5 +10,5 @@ require 'csv'
 player_file = "Master-small.csv"
 
 BattingImporter.new("#{Rails.root}/lib/statistics/Batting-07-12.csv").parse_csv
-PlayerImporter.new("#{Rails.root}/spec/fixtures/Master-small.csv").parse_csv
+PlayerImporter.new("#{Rails.root}/lib/statistics/Master-small.csv").parse_csv
 
