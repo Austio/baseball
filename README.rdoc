@@ -1,10 +1,11 @@
 == README
 
 * Setup
-  bundle install with at least ruby 1.9.3
-  rake db:setup - imports all data into database
-  run a rails console and execute
-  Answers.answer
+
+  - bundle install with at least ruby 1.9.3
+  - rake db:setup - imports all data into database
+  - run a rails console and execute
+  - Answers.answer
 
 * File Importing
 
@@ -14,16 +15,23 @@
   All specs for these are located in spec/service_objects
 
 * Models
-  Player
-  Team
-  PlayerTeam - Join table for player/team combo for a specific year.
-  Statistic - Join table for the player, year, team, batting and pitching statistics
-  BattingStatistic - Table for the batting statistics to be held for the season
-    nil values are taken care of by defaults in the database (i.e. default hits if nil is 0
+
+  - Player
+  - Team
+  - PlayerTeam - Join table for player/team combo for a specific year.
+  - Statistic - Join table for the player, year, team, batting and pitching statistics
+  - BattingStatistic - Table for the batting statistics to be held for the season
+  - nil values are taken care of by defaults in the database (i.e. default hits if nil is 0
+
+* Collaborator/Service Objects
+
+  - TripleCrown - Calculates a triple crown winner for a league, year and minium at bats
+  - MostImproved - Calculates the most improved player based on ANY batting_statistic attribute for a start/end year and minumum at bats
 
 * Answers
-  Answers to the questions can be determined by running Answers.answer in a rails console.  All solutions are expandabled
-  meaning that if we wanted to change at bats, teams, or the attributes by which a value was calculated it would be easy to to
+
+  Answers to the questions can be determined by running Answers.answer in a rails console.
+  All solutions are expandabled meaning that if we wanted to change at bats, teams, or the attributes by which a value was calculated it would be easy to to
 
   1. Most improved uses the MostImproved service object, it takes in an attribue, begin year, end year and minimum at bats
      The attribute has to be something that BattingStatistic will respond to with a send, so an attribute or instance method.
