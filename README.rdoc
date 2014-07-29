@@ -28,11 +28,23 @@ Assumptions
   PlayerTeam - Join table for player/team combo for a specific year.
   Statistic - Join table for the player, year, team, batting and pitching statistics
   BattingStatistic - Table for the batting statistics to be held for the season
+    nil values are taken care of by defaults in the database (i.e. default hits if nil is 0
 
+* Answers
+  Answers to the questions can be determined by running Answers.answer in a rails console.
+  1. Most improved uses the MostImproved service object, it takes in an attribue, begin year, end year and minimum at bats
+     The attribute has to be something that BattingStatistic will respond to with a call, so an attribute or instance method.
+     You could find different statistics by running MostImproved.calculate("slugging_percentage",2009,2011,154)
+     Which would calculate the most improved slugging percentage between 2009 and 2011 with 154 at bats.
+  2. Slugging percentage uses a standard scope relation on the Stat object to find all the Stat for teams of a certain type.
+     It then includes all the batting statistics and players, loops through them and prints out the slugging percentage.
+  3.
 
 * Configuration
 
 * Database creation
+  run rake db:setup
+
 
 * Database initialization
 
