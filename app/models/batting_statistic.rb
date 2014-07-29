@@ -4,14 +4,14 @@ class BattingStatistic < ActiveRecord::Base
 
   scope :min_ab, ->(at_bats) { where("ab > ?", at_bats) }
 
-  def hits
+  def singles
    (h - double - triple - hr)
   rescue
     0
   end
 
   def base_count
-    hits + (2 * double) + (3 * triple) + (4 * hr)
+    singles + (2 * double) + (3 * triple) + (4 * hr)
   rescue
     0
   end
@@ -23,7 +23,7 @@ class BattingStatistic < ActiveRecord::Base
   end
 
   def batting_average
-    (hits.to_f / ab.to_f).round(3)
+    (h.to_f / ab.to_f).round(3)
   rescue
     0
   end

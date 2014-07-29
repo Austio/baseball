@@ -1,19 +1,10 @@
 == README
 
-Assumptions
-  - We are getting a for real CSV file that is formatted correctly.
-
-  - We are getting the most accurate data, so we will not need to run updates on current data.
-  Only creation on the data we import.
-
-  - A player's statistics are calculated for a team based on who he was playing for at the end of the year.
-  If this was not true, we would need to figure out how this is calculated and clean up the player_teams table to account for
-  partial years or break it down to a specific date range
-
-  - A player can have both hitting and pitching statistics, we will handle that in the statistic model
-
-  - A team can either be in the NL or AL.  If we wanted to deal with teams that can switch divisions, we would add a new table
-  that would deal with them being in one or the other based on year.
+* Setup
+  bundle install with at least ruby 1.9.3
+  rake db:setup - imports all data into database
+  run a rails console and execute
+  Answers.answer
 
 * File Importing
 
@@ -31,31 +22,15 @@ Assumptions
     nil values are taken care of by defaults in the database (i.e. default hits if nil is 0
 
 * Answers
-  Answers to the questions can be determined by running Answers.answer in a rails console.
+  Answers to the questions can be determined by running Answers.answer in a rails console.  All solutions are expandabled
+  meaning that if we wanted to change at bats, teams, or the attributes by which a value was calculated it would be easy to to
+
   1. Most improved uses the MostImproved service object, it takes in an attribue, begin year, end year and minimum at bats
-     The attribute has to be something that BattingStatistic will respond to with a call, so an attribute or instance method.
+     The attribute has to be something that BattingStatistic will respond to with a send, so an attribute or instance method.
      You could find different statistics by running MostImproved.calculate("slugging_percentage",2009,2011,154)
      Which would calculate the most improved slugging percentage between 2009 and 2011 with 154 at bats.
+     You could use this to calculate any most improved that coule be imagined by just creating an instance method on batting_statistic
   2. Slugging percentage uses a standard scope relation on the Stat object to find all the Stat for teams of a certain type.
-     It then includes all the batting statistics and players, loops through them and prints out the slugging percentage.
-  3.
-
-* Configuration
-
-* Database creation
-  run rake db:setup
-
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+     It then includes all the batting statistics (with miniumum at bats) and players, loops through them and prints out the slugging percentage.
+  3. Triple Crown uses the TripleCrown service object.  This object takes into account ties for most home runs, rbis and batting averages
+     and returns the list of people who are triple crown winners.  Most likely this will always be one or none

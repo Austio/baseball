@@ -1,16 +1,16 @@
 
 class MostImproved
 
-  def self.calculate(attribute,start_year,finish_year, at_bats)
-    start    = Stat.from_year(start_year).includes(:player).includes(:batting_statistic)
-    finish   = Stat.from_year(finish_year).includes(:player).includes(:batting_statistic)
-    result = find_max(start, finish,attribute)
-    puts "#{result}: Most improved #{attribute} between #{start_year}-#{finish_year}"
+  def self.calculate(attribute,start_year,finish_year, at_bats=0)
+    start    = Stat.from_year(start_year).includes(:player).min_ab(at_bats)
+    finish   = Stat.from_year(finish_year).includes(:player).min_ab(at_bats)
+    result = find_max(start, finish,attribute,at_bats)
+    puts "Most improved #{attribute} between #{start_year}-#{finish_year} --- #{result}"
   end
 
-  def self.find_max(start, finish, attribute)
-    max    = -50000
-    player = ''
+  def self.find_max(start, finish, attribute, at_bats)
+    max    = 0
+    player = 'noone'
 
     start.each do |s|
       f = finish.where(player_id: s.player_id).first
@@ -20,6 +20,8 @@ class MostImproved
         if improvement > max
           player = f.player.name
           max    = improvement
+        elsif improvement == max
+          player += " and #{f.player.name}"
         end
 
       end
