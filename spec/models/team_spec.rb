@@ -5,4 +5,5 @@ RSpec.describe Team, :type => :model do
     it {should have_many(:player_teams)}
     it {should have_many(:players).through(:player_teams)}
   end
+
 end

@@ -1,8 +1,16 @@
 class BattingStatistic < ActiveRecord::Base
   belongs_to :stat
   has_one :player, through: :stat
+  has_one :team, through: :stat
 
-  scope :min_ab, ->(at_bats) { where("ab > ?", at_bats) }
+  validates :g, :ab, :r, :h, :double, :triple, :hr, :rbi, :sb, :cs, numericality: { greater_than_or_equal_to: 0, allow_nil: false }
+
+  scope :min_ab,      ->(at_bats) { where("ab > ?", at_bats) }
+  scope :from_year,   ->(year)    { joins(:stat).where(:stats =>{:year => year}) }
+  scope :from_team,   ->(team)    { joins(:team).where(:teams => {:name => team.upcase}) }
+  scope :from_league, ->(league)  { joins(:team).where(:teams => {:league => league.upcase}) }
+  #BattingStatistic.joins(:team).where(:teams => {:name => "OAK"})
+
 
   def singles
    (h - double - triple - hr)
@@ -27,7 +35,5 @@ class BattingStatistic < ActiveRecord::Base
   rescue
     0
   end
-
-
 
 end

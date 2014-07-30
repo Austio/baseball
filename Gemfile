@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 gem 'shoulda-matchers', group: :test
 gem 'rspec-rails', group: :test
 
+gem 'factory_girl_rails', group: :test
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

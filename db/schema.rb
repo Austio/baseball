@@ -14,16 +14,16 @@
 ActiveRecord::Schema.define(version: 20140725214858) do
 
   create_table "batting_statistics", force: true do |t|
-    t.integer  "g"
-    t.integer  "ab"
-    t.integer  "r"
-    t.integer  "h"
-    t.integer  "double"
-    t.integer  "triple"
-    t.integer  "hr"
-    t.integer  "rbi"
-    t.integer  "sb"
-    t.integer  "cs"
+    t.integer  "g",          default: 0
+    t.integer  "ab",         default: 0
+    t.integer  "r",          default: 0
+    t.integer  "h",          default: 0
+    t.integer  "double",     default: 0
+    t.integer  "triple",     default: 0
+    t.integer  "hr",         default: 0
+    t.integer  "rbi",        default: 0
+    t.integer  "sb",         default: 0
+    t.integer  "cs",         default: 0
     t.integer  "stat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
