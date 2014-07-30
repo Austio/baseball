@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BattingStatistic, :type => :model do
   describe "validations" do
-    it {should belong_to(:stat)}
+    it {should have_one(:stat)}
     it {should have_one(:player).through(:stat)}
   end
 
