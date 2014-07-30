@@ -28,8 +28,8 @@ RSpec.describe BattingStatistic, :type => :model do
         year = 2015
         batting_stat_1 = FactoryGirl.create(:batting_statistic)
         batting_stat_2 = FactoryGirl.create(:batting_statistic)
-        stat_1 = FactoryGirl.create(:stat, year: year)
-        stat_2 = FactoryGirl.create(:stat, player_id: 2, year: (year - 1), batting_statistic_id: batting_stat_2.id)
+        stat_1 = FactoryGirl.create(:stat, :year => year)
+        stat_2 = FactoryGirl.create(:stat, :player_id => 2, :year => (year - 1), :batting_statistic_id => batting_stat_2.id)
 
         expect(BattingStatistic.from_year(year).count).to eql(1)
       end
@@ -40,9 +40,9 @@ RSpec.describe BattingStatistic, :type => :model do
         batting_stat_1 = FactoryGirl.create(:batting_statistic)
         batting_stat_2 = FactoryGirl.create(:batting_statistic)
         team_1   = FactoryGirl.create(:team)
-        team_2   = FactoryGirl.create(:team, name: "STL", league: "AL")
-        stat_1 = FactoryGirl.create(:stat)
-        stat_2 = FactoryGirl.create(:stat, player_id: 2, batting_statistic_id: batting_stat_2.id, team_id: team_2.id)
+        team_2   = FactoryGirl.create(:team, :name => "STL", :league => "AL")
+        stat_1 = FactoryGirl.create(:stat, :batting_statistic_id => batting_stat_1.id, :team_id => team_1.id)
+        stat_2 = FactoryGirl.create(:stat, :player_id => 2, :batting_statistic_id => batting_stat_2.id, :team_id => team_2.id)
       end
 
       it "should find by league" do
