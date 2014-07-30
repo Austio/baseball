@@ -2,7 +2,7 @@
 class MostImproved
 
   def self.calculate(attribute,start_year,finish_year, at_bats=0)
-    start    = Stat.from_year(start_year).includes(:player).min_ab(at_bats)
+    start    = BattingStatistic.from_year(start_year).min_ab(at_bats)
     finish   = Stat.from_year(finish_year).includes(:player).min_ab(at_bats)
     result = find_max(start, finish,attribute,at_bats)
     puts "Most improved #{attribute} between #{start_year}-#{finish_year} --- #{result}"
